@@ -3,7 +3,6 @@ import os
 import time
 
 import joblib
-
 import pandas as pd
 from preprocess.CustomPreProcess import CustomPreProcess
 from sklearn.model_selection import train_test_split
@@ -50,7 +49,7 @@ def run():
     model_pipeline = Pipeline(
         steps=[
             ("pre_processing", CustomPreProcess()),
-            ("DecisionTreeClassifier", DecisionTreeClassifier(max_depth=5))
+            ("DecisionTreeClassifier", DecisionTreeClassifier(max_depth=5)),
         ]
     )
     model_pipeline.fit(X_train, y_train)
