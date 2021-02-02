@@ -1,13 +1,13 @@
-from sklearn.base import BaseEstimator
 from collections import defaultdict
+
 import nltk
 import numpy as np
+from sklearn.base import BaseEstimator
 
-nltk.download('punkt')
+nltk.download("punkt")
 
 
 class CustomPreProcess(BaseEstimator):
-
     def default_val(self):  # Pickle can't serialize lambda
         return 0
 
@@ -45,22 +45,22 @@ class CustomPreProcess(BaseEstimator):
 
     def fit(self, X, y=None):
         if self.debug:
-            print('Tokenizing... Might take some time')
+            print("Tokenizing... Might take some time")
         split_X = self.tokenizing(X)
         if self.debug:
-            print('Making dictionary')
+            print("Making dictionary")
         self.make_dictionary(split_X)
         if self.debug:
-            print('Done!')
+            print("Done!")
         pass
 
     def transform(self, X):
         if self.debug:
-            print('Tokenizing... Might take some time')
+            print("Tokenizing... Might take some time")
         split_X = self.tokenizing(X)
 
         if self.debug:
-            print('Transforming to vec')
+            print("Transforming to vec")
         num_samples = X.shape[0]
 
         features_vec = np.zeros((num_samples, self.num_cols), dtype=np.int8)
