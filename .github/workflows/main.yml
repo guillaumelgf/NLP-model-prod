@@ -24,6 +24,7 @@ jobs:
 
       - name: Create package
         run: |
+          pip install yaml
           python setup.py sdist
           export model_name="$(ls dist)"
 
@@ -34,7 +35,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
-          source: "dist/trainer-0.1.tar.gz"
+          source: "dist/$model_name"
           target: "storage/packages"
           strip_components: 1
 
