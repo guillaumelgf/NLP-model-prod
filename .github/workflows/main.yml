@@ -1,1 +1,45 @@
+name: Training model
+on:
+  push:
+    branches: [main]
+  
 
+jobs:
+  package-model:
+    
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        python-version: [3.7]
+        
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Create package
+        run: |
+          python setup.py sdist
+
+      - name: Push package to local-server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.LOCAL_SERVER_SSH }}
+          port: ${{ secrets.PORT }}
+          source: "dist/trainer-0.1.tar.gz"
+          target: "storage/packages"
+          strip_components: 1
+
+      - name: Train model on local-server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.LOCAL_SERVER_SSH }}
+          port: ${{ secrets.PORT }}
+          script: docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e test=trainer-0.1 --rm test:latest
