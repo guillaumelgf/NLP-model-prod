@@ -22,8 +22,8 @@ REQUIRED_PACKAGES = []
 model_name = get_model_name()
 
 setup(
-    name=model_name,
-    version=1.0,
+    name="trainer",
+    version=0.1,
     install_requires=REQUIRED_PACKAGES,
     packages=find_packages(),
     include_package_data=True,
