@@ -27,7 +27,7 @@ jobs:
           pip install pyyaml
           python setup.py sdist
           export model_name="$(ls dist)"
-          echo $model_name
+          echo "dist/$model_name"
 
       - name: Push package to local-server
         uses: appleboy/scp-action@master
