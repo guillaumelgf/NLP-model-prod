@@ -2,8 +2,6 @@ name: Training model
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   
 
 jobs:
@@ -44,4 +42,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
-          script: docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e test=trainer-0.1 test:latest  
+          script: docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e test=trainer-0.1 --rm test:latest
