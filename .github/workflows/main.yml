@@ -36,3 +36,7 @@ jobs:
           source: "dist/trainer-0.1.tar.gz"
           target: "storage/packages"
           strip_components: 1
+
+      - name: Train model on local-server
+        run: |
+          docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e test=trainer-0.1 test:latest  
