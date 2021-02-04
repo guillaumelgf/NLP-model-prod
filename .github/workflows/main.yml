@@ -25,7 +25,6 @@ jobs:
       - name: Create package
         run: |
           python setup.py sdist
-          cd dist
 
       - name: Push package to local-server
         uses: appleboy/scp-action@master
@@ -34,5 +33,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
-          source: "trainer-0.1.tar.gz"
-          target: "storage/packages/"
+          source: "dist/trainer-0.1.tar.gz"
+          target: "storage/packages"
