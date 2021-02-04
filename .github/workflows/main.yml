@@ -24,7 +24,7 @@ jobs:
 
       - name: Create package
         run: |
-          pip install yaml
+          pip install pyyaml
           python setup.py sdist
           export model_name="$(ls dist)"
 
