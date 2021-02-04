@@ -35,4 +35,4 @@ jobs:
           key: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
           source: "dist/trainer-0.1.tar.gz"
-          target: "storage/packages/"
+          target: "storage/packages/trainer-0.1.tar.gz"
