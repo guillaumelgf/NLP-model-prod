@@ -16,7 +16,6 @@ jobs:
            key: ${{ secrets.LOCAL_SERVER_SSH }}
            port: 22
            script: |
-             cd NLP-for-fun
-             git clone https://github.com/guillaumelgf/NLP-model-prod.git
-             cd NLP-model-prod
-             git status
+             cd NLP-for-fun/NLP-model-prod/
+             git pull origin master
+             python setup.py sdist 
