@@ -26,7 +26,8 @@ jobs:
           pip install pyyaml
           python setup.py sdist
           export model_name="$(ls dist)"
-          echo "dist/$model_name"
+          export docker_command="docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e model_name=$model_name --rm train-model:latest"
+          echo $docker_command
 
       - name: Push package to local-server
         uses: appleboy/scp-action@master
@@ -46,4 +47,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
-          script: docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e model_name="$model_name" --rm train-model:latest
+          script: $docker_command
