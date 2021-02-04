@@ -34,5 +34,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
-          source: trainer-0.1.tar.gz
+          source: dist/trainer-0.1.tar.gz
           target: "storage/packages/"
