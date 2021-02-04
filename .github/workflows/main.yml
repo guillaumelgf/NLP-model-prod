@@ -38,5 +38,10 @@ jobs:
           strip_components: 1
 
       - name: Train model on local-server
-        run: |
-          docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e test=trainer-0.1 test:latest  
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.LOCAL_SERVER_SSH }}
+          port: ${{ secrets.PORT }}
+          script: docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e test=trainer-0.1 test:latest  
