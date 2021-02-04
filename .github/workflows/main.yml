@@ -13,7 +13,7 @@ jobs:
          with:
            host: 91.177.176.96
            username: glegoff
-           key: ${{ SECRET.LOCAL_SERVER_SSH }}
+           key: ${{ secrets.LOCAL_SERVER_SSH }}
            port: 22
            script: |
              cd NLP-for-fun
