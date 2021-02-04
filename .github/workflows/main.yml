@@ -35,4 +35,4 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "dist/trainer-0.1.tar.gz"
           target: "storage/packages"
-          strip_componetnst: 1
+          strip_components: 1
