@@ -25,6 +25,8 @@ jobs:
         run: |
           pip install pyyaml
           python setup.py sdist
+          export model_name="$(ls dist)"
+          echo "dist/$model_name"
 
       - name: Push package to local-server
         uses: appleboy/scp-action@master
@@ -33,7 +35,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.LOCAL_SERVER_SSH }}
           port: ${{ secrets.PORT }}
-          source: "dist/trainer-0.1.tar.gz"
+          source: "dist/*"
           target: "storage/packages"
           strip_components: 1
 
