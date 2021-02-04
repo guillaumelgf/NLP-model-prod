@@ -31,8 +31,8 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: 91.177.176.96
-          username: glegoff
+          username: {{ secrets.USERNAME }}
           password: {{ secrets.LOCAL_SERVER_SSH }}
-          port: 22
+          port: {{ secrets.PORT }}
           source: trainer-0.1.tar.gz
           target: "storage/packages/"
