@@ -46,4 +46,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             export model_name="$(ls -Art | tail -n 1)"
-            docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e model_name=$model_name --rm train-model:latest
+            docker run --name test-training -v /home/glegoff/storage/:/storage -e DATA_PATH=storage/data/ -e model_name="$model_name" --rm train-model:latest
