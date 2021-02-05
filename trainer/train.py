@@ -57,7 +57,8 @@ def run():
 
     print("Exporting model", end="")
     start_timer = time.time()
-    joblib.dump(model_pipeline, "models/model.joblib")
+    model_name = os.environ['model_name'][:-7]
+    joblib.dump(model_pipeline, f"models/{model_name}.joblib")
     print(f"Execution {time.time() - start_timer:.2f}s")
 
     print("Evaluating", end="")
